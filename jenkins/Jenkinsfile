@@ -10,7 +10,11 @@ podTemplate(name: 'maven-template', label: 'maven', cloud:
   ]){
 
   node('maven') {
-    stage('Build a Maven project') {
+    stage('Clone git') {
+      git 'https://github.com/sindar225/simple-java-maven-app.git'
+    }    
+	
+	stage('Build a Maven project') {
       git 'https://github.com/sindar225/simple-java-maven-app.git'
       container('maven') {
           sh 'mvn -B clean package'
